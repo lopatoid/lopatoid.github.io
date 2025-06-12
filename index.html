@@ -118,8 +118,7 @@
   <div id="winModal" class="modal-ovl" style="display:none">
     <div class="modal-content items-center text-center">
       <div class="font-bold text-xl mb-2">Congratulations!</div>
-      <div id="winText"></div>
-      <button id="winOk">OK</button>
+      <div id="winText" class="mb-1"></div>
     </div>
   </div>
 
@@ -180,6 +179,7 @@
     let lastTime = Date.now();
     let username = null;
     let winAnnounced = false;
+    let gameFrozen = false;
 
     // --- ELEMENTS ---
     const pointsSpan = document.getElementById("points");
@@ -196,7 +196,6 @@
     const usernameOk = document.getElementById("usernameOk");
     const winModal = document.getElementById("winModal");
     const winText = document.getElementById("winText");
-    const winOk = document.getElementById("winOk");
 
     // --- COOKIES ---
     function setCookie(name, value, days) {
@@ -236,7 +235,7 @@
             }
           }
         }
-        const enough = state.points >= price && unlocked;
+        const enough = state.points >= price && unlocked && !gameFrozen;
         shopDiv.innerHTML += `
           <button 
             class="shop-enh bg-white rounded-2xl shadow-md flex flex-col items-start p-6 transition-all duration-150 w-full border-2
@@ -246,6 +245,7 @@
             aria-disabled="${!enough}"
             tabindex="${enough ? 0 : -1}"
             ${unlocked ? '' : 'title="Buy previous enhancement(s) to unlock"'}
+            ${gameFrozen ? 'disabled' : ''}
           >
             <div class="flex items-center gap-3 mb-2 w-full">
               <span class="text-4xl">${enh.icon}</span>
@@ -265,6 +265,7 @@
 
     // --- SHOP BUY HANDLER ---
     shopDiv.addEventListener('click', function(e) {
+      if (gameFrozen) return;
       const btn = e.target.closest('.shop-enh');
       if (!btn) return;
       const i = Number(btn.dataset.index);
@@ -293,6 +294,7 @@
 
     // --- CLICK HANDLING ---
     bigBtn.addEventListener('click', (e) => {
+      if (gameFrozen) return;
       try {
         clickSound.currentTime = 0;
         clickSound.play();
@@ -314,13 +316,14 @@
 
     // Touch support
     bigBtn.addEventListener('touchstart', e => {
+      if (gameFrozen) return;
       e.preventDefault();
       bigBtn.click();
     }, {passive:false});
 
     // --- DROP FOUNTAIN ANIMATION ---
     function createDrop(x, y, w, h) {
-      if (!DROP_IMAGES.length) return;
+      if (!DROP_IMAGES.length || gameFrozen) return;
       const angle = Math.random() * 2 * Math.PI;
       const dist = 40 + Math.random() * 30;
       const dx = Math.cos(angle) * dist;
@@ -339,6 +342,7 @@
 
     // --- GAME LOOP ---
     function loop() {
+      if (gameFrozen) return;
       const now = Date.now();
       const dt = (now - lastTime)/1000;
       lastTime = now;
@@ -365,11 +369,9 @@
     }
 
     function showWinModal() {
+      gameFrozen = true;
       winModal.style.display = "flex";
-      winText.innerHTML = `<b>${username + (username.endsWith("s") ? "'" : "'s") + " account"}</b><br><br>The Entire world population subscribed to you!`;
-    }
-    function hideWinModal() {
-      winModal.style.display = "none";
+      winText.innerHTML = `Entire world population subscribed to <b>${username + (username.endsWith("s") ? "'" : "'s")} account</b>!`;
     }
 
     function checkWin() {
@@ -455,14 +457,6 @@
       renderStats();
       loop();
       setInterval(postStats, 60000);
-    });
-
-    // --- Win Modal Handlers ---
-    winOk.addEventListener("click", function() {
-      hideWinModal();
-    });
-    winModal.addEventListener("click", function(e){
-      if (e.target === winModal) hideWinModal();
     });
   </script>
 </body>
