@@ -1,14 +1,98 @@
 window.ENHANCEMENTS = [
-  { name: "Grandma's Fingers", desc: "Even grandmas are clicking now!", icon: "🧓", base: 15, cpcInc: 100000, cpsInc: 1 },
-  { name: "Quantum Mouse", desc: "Clicks in all universes.", icon: "🖱️", base: 100, cpcInc: 4, cpsInc: 7 },
-  { name: "AI Assistant", desc: "Automates everything!", icon: "🤖", base: 500, cpcInc: 12, cpsInc: 30 },
-  { name: "Cookie Factory", desc: "Industrial scale clicking.", icon: "🏭", base: 2500, cpcInc: 50, cpsInc: 120 },
-  { name: "Time Machine", desc: "Clicks in the past and future.", icon: "⏰", base: 12000, cpcInc: 210, cpsInc: 520 },
-  { name: "Galactic Laser", desc: "Stars themselves help you.", icon: "✨", base: 70000, cpcInc: 900, cpsInc: 2200 },
-  { name: "Thousand Fingers", desc: "So many fingers, so many clicks.", icon: "🖐️", base: 80, cpcInc: 2, cpsInc: 0 },
-  { name: "Golden Thumb", desc: "Every click feels rich.", icon: "👍", base: 350, cpcInc: 8, cpsInc: 0 },
-  { name: "Turbo Tapper", desc: "Clicking faster than light.", icon: "👆", base: 1000, cpcInc: 30, cpsInc: 0 },
-  { name: "Meteor Shower", desc: "Meteors clicking for you.", icon: "☄️", base: 5300, cpcInc: 120, cpsInc: 350 },
-  { name: "Alien Help", desc: "They come in peace... to click.", icon: "👽", base: 30000, cpcInc: 490, cpsInc: 1600 },
-  { name: "Eternal Meme", desc: "Clicking is love, clicking is life.", icon: "😂", base: 160000, cpcInc: 2000, cpsInc: 7000 }
+  {
+    name: "Create content",
+    desc: "Like baking a cake but for your audience. Pick your ingredients (photo, filter, music), mix, decorate, and voilà—post it hot!",
+    icon: "🎨",
+    base: 10,
+    cpcInc: 1,
+    cpsInc: 1
+  },
+  {
+    name: "Link in bio",
+    desc: "One link to rule them all! “Link in bio” = the spell that takes followers from your post to your full story.",
+    icon: "🔗",
+    base: 20,
+    cpcInc: 1,
+    cpsInc: 2
+  },
+  {
+    name: "Manychat chat marketing platform",
+    desc: "Manychat helps you talk to customers automagically—on Instagram, WhatsApp, Facebook, and more!",
+    icon: "🤖",
+    base: 40,
+    cpcInc: 2,
+    cpsInc: 4
+  },
+  {
+    name: "Drop the link in DM",
+    desc: "Share your product, offer, or latest thing—straight in the DM. One tap, they're in.",
+    icon: "💬",
+    base: 80,
+    cpcInc: 4,
+    cpsInc: 8
+  },
+  {
+    name: "Conversation Starters",
+    desc: "Conversation Starters are the friendly buttons that greet people when they open your chat—no awkward silence.",
+    icon: "👋",
+    base: 160,
+    cpcInc: 8,
+    cpsInc: 16
+  },
+  {
+    name: "Story Mention Trigger",
+    desc: "Get noticed in a Story? Boom—Manychat jumps in and starts the convo for you.",
+    icon: "🚨",
+    base: 320,
+    cpcInc: 16,
+    cpsInc: 32
+  },
+  {
+    name: "Comments Growth Tool",
+    desc: "Now every “🔥” or “Yes please” can start a chat that delivers your offer, link, or surprise.",
+    icon: "🗨️",
+    base: 640,
+    cpcInc: 32,
+    cpsInc: 64
+  },
+  {
+    name: "Check Follow Status",
+    desc: "Before you send that message or gift, Manychat checks if they’ve hit the follow button.",
+    icon: "🔍",
+    base: 1280,
+    cpcInc: 64,
+    cpsInc: 128
+  },
+  {
+    name: "AI Step",
+    desc: "Insert an AI Step and watch your chatbot respond with natural, intelligent answers—like a real convo wizard.",
+    icon: "🧙‍♂️",
+    base: 2560,
+    cpcInc: 128,
+    cpsInc: 256
+  },
+  {
+    name: "24-hour Automated Follow-Up",
+    desc: "Someone messaged you? Boom—Manychat can auto-follow-up within 24 hours with a reminder, offer, or next step.",
+    icon: "📬",
+    base: 5120,
+    cpcInc: 256,
+    cpsInc: 512
+  },
+  {
+    name: "Live Chat",
+    desc: "Live Chat lets you take over the convo in real-time—because sometimes, it’s just better human-to-human.",
+    icon: "🧍‍♀️",
+    base: 10240,
+    cpcInc: 512,
+    cpsInc: 1024
+  },
+  {
+    name: "Email/Phone Capture",
+    desc: "They drop their info, and you’ve got a new lead—ready for follow-ups, promos, or VIP access.",
+    icon: "📧",
+    base: 20480,
+    cpcInc: 1024,
+    cpsInc: 2048
+  }
 ];
