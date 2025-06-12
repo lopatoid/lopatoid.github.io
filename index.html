@@ -254,10 +254,10 @@
             </div>
             <div class="shop-desc text-gray-700 text-base mb-2">${enh.desc}</div>
             <div class="flex flex-col gap-0.5 mb-1 text-sm w-full">
-              <span class="stat-label"><span class="font-semibold">+${format(enh.cpsInc)}</span> pts/sec</span>
-              <span class="stat-label"><span class="font-semibold">+${format(enh.cpcInc)}</span> pts/click</span>
+              <span class="stat-label"><span class="font-semibold">+${format(enh.cpsInc)}</span> subs/sec</span>
+              <span class="stat-label"><span class="font-semibold">+${format(enh.cpcInc)}</span> subs/click</span>
             </div>
-            <div class="mt-2 font-bold text-blue-700 text-lg stat-number">${format(price)} pts</div>
+            <div class="mt-2 font-bold text-blue-700 text-lg stat-number">${format(price)} subs</div>
           </button>
         `;
       });
@@ -351,7 +351,6 @@
     // --- GET/SET USERNAME ---
     function setUserBox(name) {
       userbox.style.display = '';
-      // Possessive ("Chris's account" or "Max' account")
       userbox.textContent = name + (name.endsWith("s") ? "'" : "'s") + " account";
     }
 
@@ -367,7 +366,7 @@
 
     function showWinModal() {
       winModal.style.display = "flex";
-      winText.innerHTML = `<b>${username + (username.endsWith("s") ? "'" : "'s") + " account"}</b> has collected 1,000,000 points and bought all enhancements!<br><br>You win Manyclicker!`;
+      winText.innerHTML = `<b>${username + (username.endsWith("s") ? "'" : "'s") + " account"}</b><br><br>The Entire world population subscribed to you!`;
     }
     function hideWinModal() {
       winModal.style.display = "none";
@@ -376,7 +375,7 @@
     function checkWin() {
       if (winAnnounced) return;
       const allBought = state.upgrades.every(u => u > 0);
-      if (allBought && state.points >= 1000000) {
+      if (allBought && state.points >= 50000) {
         winAnnounced = true;
         setTimeout(showWinModal, 300);
       }
@@ -391,7 +390,7 @@
       const formData = new FormData();
       formData.append("name", username);
       formData.append("time", ts);
-      formData.append("pts", Math.floor(state.points));
+      formData.append("pts", Math.floor(state.points)); // Still send as "pts" in POST for compatibility
       fetch("https://script.google.com/macros/s/AKfycbxMjUEsmMl1bbqAC1_5BmOtk4yMzhDq2YitWROQ-tTM84NUPxC8hHvDa_Es0zOGVyapCA/exec", {
         method: "POST",
         body: formData
