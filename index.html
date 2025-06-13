@@ -455,6 +455,7 @@
         usernameModal.style.display = "none";
         renderShop();
         renderStats();
+        lastTime = Date.now();
         loop();
         setInterval(postStats, 60000);
       } else {
@@ -492,6 +493,7 @@
       hideUsernameModal();
       renderShop();
       renderStats();
+      lastTime = Date.now();
       loop();
       setInterval(postStats, 60000);
     });
