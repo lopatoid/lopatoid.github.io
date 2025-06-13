@@ -328,7 +328,7 @@
     }
 
     // --- CLICK HANDLING ---
-    bigBtn.addEventListener('click', (e) => {
+    function handleClick(ev) {
       if (gameFrozen) return;
       try {
         clickSound.currentTime = 0;
@@ -343,17 +343,19 @@
       renderShop();
       checkWin();
       const rect = bigBtn.getBoundingClientRect();
-      let cx = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
-      let cy = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
-      if (isNaN(cx) || isNaN(cy)) { cx = rect.width/2; cy = rect.height/2; }
+      let cx = (typeof ev.clientX === 'number') ? ev.clientX - rect.left : rect.width/2;
+      let cy = (typeof ev.clientY === 'number') ? ev.clientY - rect.top : rect.height/2;
       createDrop(cx, cy, rect.width, rect.height);
+    }
+
+    bigBtn.addEventListener('click', (e) => {
+      handleClick(e);
     });
 
     // Touch support
     bigBtn.addEventListener('touchstart', e => {
-      if (gameFrozen) return;
       e.preventDefault();
-      bigBtn.click();
+      handleClick(e.touches[0] || {});
     }, {passive:false});
 
     // --- DROP FOUNTAIN ANIMATION ---
